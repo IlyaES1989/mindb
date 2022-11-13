@@ -28,8 +28,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    'rest_framework',
-
+    "rest_framework",
     "mindb.products.apps.ProductsConfig",
 ]
 
@@ -67,7 +66,7 @@ WSGI_APPLICATION = "mindb.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-DATABASES = {'default': env.db('DATABASE_URL')}
+DATABASES = {"default": env.db("DATABASE_URL")}
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
@@ -112,19 +111,21 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # django-debug-toolbar
 # ------------------------------------------------------------------------------
-# https://django-debug-toolbar.readthedocs.io/en/latest/installation.html#prerequisites
-INSTALLED_APPS += ["debug_toolbar"]  # noqa F405
-# https://django-debug-toolbar.readthedocs.io/en/latest/installation.html#middleware
-MIDDLEWARE += ["debug_toolbar.middleware.DebugToolbarMiddleware"]  # noqa F405
-# https://django-debug-toolbar.readthedocs.io/en/latest/configuration.html#debug-toolbar-config
-DEBUG_TOOLBAR_CONFIG = {
-    "DISABLE_PANELS": ["debug_toolbar.panels.redirects.RedirectsPanel"],
-    "SHOW_TEMPLATE_CONTEXT": True,
-}
-# https://django-debug-toolbar.readthedocs.io/en/latest/installation.html#internal-ips
-INTERNAL_IPS = ["127.0.0.1", "10.0.2.2"]
-if env("USE_DOCKER") == "yes":
-    import socket
+if DEBUG:
+    INSTALLED_APPS += ["debug_toolbar"]  # noqa F405
+    MIDDLEWARE += ["debug_toolbar.middleware.DebugToolbarMiddleware"]  # noqa F405
+    DEBUG_TOOLBAR_CONFIG = {
+        "DISABLE_PANELS": ["debug_toolbar.panels.redirects.RedirectsPanel"],
+        "SHOW_TEMPLATE_CONTEXT": True,
+    }
+    INTERNAL_IPS = ["127.0.0.1", "10.0.2.2"]
+    if env("USE_DOCKER") == "yes":
+        import socket
 
-    hostname, _, ips = socket.gethostbyname_ex(socket.gethostname())
-    INTERNAL_IPS += [ip[:-1] + "1" for ip in ips]
+        hostname, _, ips = socket.gethostbyname_ex(socket.gethostname())
+        INTERNAL_IPS += [ip[:-1] + "1" for ip in ips]
+
+
+INSTALLED_APPS += [
+    "drf_yasg",
+]
