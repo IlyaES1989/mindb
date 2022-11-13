@@ -1,18 +1,19 @@
-from rest_framework.viewsets import ModelViewSet
+from rest_framework.viewsets import ViewSet
+from rest_framework.generics import ListAPIView
 
 from .models import Product, Category, Pair
 from .serializers import ProductSerializer, CategorySerializer, PairSerializer
 
 
-class ProductView(ModelViewSet):
+class ProductView(ListAPIView, ViewSet):
     serializer_class = ProductSerializer
 
     def get_queryset(self):
-        queryset = Product.objects.prefetch_related("categories")
+        queryset = Product.objects.prefetch_related("categories").all()
         return queryset.all()
 
 
-class CategoryView(ModelViewSet):
+class CategoryView(ListAPIView, ViewSet):
     serializer_class = CategorySerializer
 
     def get_queryset(self):
@@ -20,7 +21,7 @@ class CategoryView(ModelViewSet):
         return queryset.all()
 
 
-class PairsView(ModelViewSet):
+class PairsView(ListAPIView, ViewSet):
     serializer_class = PairSerializer
 
     def get_queryset(self):
