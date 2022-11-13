@@ -16,3 +16,5 @@ Werkzeug==2.2.2  # https://pypi.org/project/Werkzeug/
 # Testing
 # ------------------------------------------------------------------------------
 pytest==7.2.0  # https://pypi.org/project/pytest/
+
+django-debug-toolbar

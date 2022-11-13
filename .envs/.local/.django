@@ -5,4 +5,4 @@ IPYTHONDIR=/app/.ipython
 
 DJANGO_SECRET_KEY=django-insecure-c3m7$i2@67hf5sxox-ybbm=qd7i27)k&y+^41rl0*c_r#*&)hn
 DJANGO_ALLOWED_HOSTS=0.0.0.0
-DJANGO_DEBUG=False
+DJANGO_DEBUG=True
