@@ -16,20 +16,11 @@ class CategoryForProductSerializer(serializers.ModelSerializer):
 
 
 class CategorySerializer(serializers.ModelSerializer):
-    products = serializers.SerializerMethodField()
+    products = ProductForCategorySerializer(many=True)
 
     class Meta:
         model = Category
         fields = ["uuid", "name", "products"]
-
-    def get_products(self, instance):
-
-        products = Product.objects.filter(categories__uuid=instance.uuid)
-
-        return ProductForCategorySerializer(
-            products,
-            many=True,
-        ).data
 
 
 class ProductSerializer(serializers.ModelSerializer):

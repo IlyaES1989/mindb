@@ -8,18 +8,20 @@ class ProductView(ModelViewSet):
     serializer_class = ProductSerializer
 
     def get_queryset(self):
-        return Product.objects.all()
+        queryset = Product.objects.prefetch_related("categories")
+        return queryset.all()
 
 
 class CategoryView(ModelViewSet):
     serializer_class = CategorySerializer
 
     def get_queryset(self):
-        return Category.objects.all()
+        queryset = Category.objects.prefetch_related("products")
+        return queryset.all()
 
 
 class PairsView(ModelViewSet):
     serializer_class = PairSerializer
 
     def get_queryset(self):
-        return Pair.objects.all()
+        return Pair.objects.select_related("product").select_related("categories").all()

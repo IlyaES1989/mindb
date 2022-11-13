@@ -31,6 +31,7 @@ class Category(models.Model):
         default=uuid.uuid4,
     )
     name = models.CharField("наименование", max_length=255, db_index=True)
+    products = models.ManyToManyField("Product", verbose_name="категории", blank=True, through=Pair)
 
     def __str__(self):
         return f"{self.name}: {self.uuid}"
