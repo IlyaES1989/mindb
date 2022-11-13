@@ -6,9 +6,3 @@ POSTGRES_DB=postgres
 POSTGRES_USER=debug
 POSTGRES_PASSWORD=debug
 DATABASE_URL=postgres://debug:debug@postgres:5432/postgres
-
-# PGADMIN
-# ------------------------------------------------------------------------------
-PGADMIN_SETUP_EMAIL=name@domain.ru
-PGADMIN_SETUP_PASSWORD=Pa$sword
-SERVER_PORT=8050
