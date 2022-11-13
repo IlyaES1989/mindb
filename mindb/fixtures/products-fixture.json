@@ -1,0 +1,68 @@
+[
+  {
+    "model": "products.pair",
+    "pk": 1,
+    "fields": {
+      "product": "e27db6da-bfa8-499b-a466-1fc55019f3e3",
+      "categories": "db9925da-9b85-4c41-b18f-b6ff20fbd41a"
+    }
+  },
+  {
+    "model": "products.pair",
+    "pk": 34,
+    "fields": {
+      "product": "e27db6da-bfa8-499b-a466-1fc55019f3e3",
+      "categories": "8644492b-3a95-4bfb-8fe4-cbaaac84ae86"
+    }
+  },
+  {
+    "model": "products.pair",
+    "pk": 37,
+    "fields": {
+      "product": "c9b11a44-11be-4656-acf8-21148aa726c3",
+      "categories": "db9925da-9b85-4c41-b18f-b6ff20fbd41a"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": "1344ce0f-d8e2-4ddf-b294-81837b600979",
+    "fields": {
+      "name": "Рис круглозерновой"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": "c9b11a44-11be-4656-acf8-21148aa726c3",
+    "fields": {
+      "name": "Молоко 2,5%"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": "e27db6da-bfa8-499b-a466-1fc55019f3e3",
+    "fields": {
+      "name": "Молоко 3,2%"
+    }
+  },
+  {
+    "model": "products.category",
+    "pk": "66485067-38f2-455e-aad8-f4cc4404b3a8",
+    "fields": {
+      "name": "Хлебобулочные изделия"
+    }
+  },
+  {
+    "model": "products.category",
+    "pk": "8644492b-3a95-4bfb-8fe4-cbaaac84ae86",
+    "fields": {
+      "name": "Продукты по скидке"
+    }
+  },
+  {
+    "model": "products.category",
+    "pk": "db9925da-9b85-4c41-b18f-b6ff20fbd41a",
+    "fields": {
+      "name": "Молочные продукты"
+    }
+  }
+]
