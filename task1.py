@@ -1,24 +1,7 @@
 import pandas as pd
 import numpy as np
-import random
 from datetime import datetime, timedelta
 from copy import deepcopy
-
-
-def timestamp_generation() -> pd.Timestamp:
-    delta = random.randint(0, 60)
-    return pd.Timestamp(datetime.now() + timedelta(minutes=delta))
-
-
-class SessionId:
-    _session_id = 0
-    _customer_id = None
-    _timestamp = None
-
-    @classmethod
-    def next_session_id(cls, *args):
-        cls._session_id += 1
-        return cls._session_id
 
 
 def set_session_id(frame: pd.DataFrame) -> pd.DataFrame:
@@ -38,23 +21,30 @@ def set_session_id(frame: pd.DataFrame) -> pd.DataFrame:
             & (frame.timestamp - frame.timestamp.shift() < pd.Timedelta("00:03:00"))
         ),
         np.nan,
-        frame.apply(SessionId.next_session_id, axis=1),
+        1,
+    )
+    frame["session_id"] = (
+        frame.loc[frame["session_id"] == 1].groupby("session_id").cumcount()
     )
     frame["session_id"] = frame["session_id"].ffill().astype(int)
     return frame
 
 
 if __name__ == "__main__":
-    AMOUNT = 10**2
+    AMOUNT = 10**7
+    start_time = datetime.now()
+    end_time = start_time + timedelta(minutes=10)
 
     df = pd.DataFrame(
         {
-            "customer_id": [random.randint(0, 20) for _ in range(AMOUNT)],
-            "product_id": [random.randint(200, 100_000) for _ in range(AMOUNT)],
-            "timestamp": [timestamp_generation() for i in range(AMOUNT)],
+            "customer_id": np.random.randint(0, AMOUNT, AMOUNT),
+            "product_id": np.random.randint(100, 2 * AMOUNT, AMOUNT),
+            "timestamp": np.array(
+                np.random.randint(start_time.timestamp(), end_time.timestamp(), AMOUNT),
+                dtype="datetime64[s]",
+            ),
         }
     )
-    start = datetime.now()
 
     df = set_session_id(df)
     print(df)
